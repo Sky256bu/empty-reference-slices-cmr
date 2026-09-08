@@ -1,0 +1,121 @@
+{
+  "analysis": {
+    "bootstrap_replicates": 10000,
+    "rng_seed": 20260721,
+    "stream_offsets": {
+      "fixed_ensemble": 2,
+      "unit_forest_base": 1000,
+      "unit_only_bca": 1,
+      "vendor_base": 100
+    }
+  },
+  "data": {
+    "development_block": "d00",
+    "evaluator_primitives_sha256": "d7ab97fa3b81beadb5e2216d0c1cabe3a43e8eb537e5381dbee542350af577f7",
+    "expected_external_patients": {
+      "GE": 53,
+      "Philips": 88
+    },
+    "expected_siemens_total": 219,
+    "expected_train_pool": 176,
+    "expected_unused": 66,
+    "formal_units": [
+      "u00",
+      "u01",
+      "u02",
+      "u03",
+      "u04",
+      "u05",
+      "u06",
+      "u07",
+      "u08",
+      "u09"
+    ],
+    "key_hash_serialization": "UTF-8 of lexicographically sorted normalized keys joined by one comma; no trailing delimiter",
+    "manifest_sha256": "fd9f2eba74f0adba7eff7a11c80e856d49e9aebcdcda17920f4e491d2e7f7a24",
+    "partition_seed": 20260714,
+    "selected_training_patients": 110,
+    "trainer_primitives_sha256": "3832bbfa5bb019fe3c927c81f6c4d402846a4b9d3d49c33145fbc75020eb2de3",
+    "validation_key_sha256": "2a55db7fe6f25add3fb49817c33e5d4af784db646761ec15254e2b38fdb8b8c3",
+    "validation_patients": 43
+  },
+  "development": {
+    "candidates": [
+      {
+        "learning_rate": 0.001,
+        "order": 0,
+        "recipe_id": "R0_LR1E3_STEP"
+      },
+      {
+        "learning_rate": 0.0003,
+        "order": 1,
+        "recipe_id": "R1_LR3E4_STEP"
+      },
+      {
+        "learning_rate": 0.0001,
+        "order": 2,
+        "recipe_id": "R2_LR1E4_STEP"
+      }
+    ],
+    "dice_floor": 0.5,
+    "ef_bias_sample_sd_ddof": 1,
+    "ef_bias_sample_sd_threshold": 1.77,
+    "fallback_objective": "minimize max(sample_sd_B, sample_sd_Cneg); ties by candidate order",
+    "seeds": [
+      100,
+      101,
+      102,
+      103,
+      104
+    ]
+  },
+  "external_evaluation": {
+    "domains": [
+      "SIEMENS_val",
+      "Philips",
+      "GE"
+    ],
+    "historical_parity_ef_mae": {
+      "GE": 13.9497,
+      "Philips": 6.3905,
+      "SIEMENS_val": 8.4442
+    },
+    "historical_parity_tolerance": 0.01,
+    "unlock_phrase": "I_CONFIRM_SINGLE_PHILIPS_GE_TEST_UNLOCK_V3"
+  },
+  "formal": {
+    "arms": [
+      "B",
+      "Cneg"
+    ],
+    "unit_seed_map": {
+      "u00": 0,
+      "u01": 1,
+      "u02": 2,
+      "u03": 3,
+      "u04": 4,
+      "u05": 5,
+      "u06": 6,
+      "u07": 7,
+      "u08": 8,
+      "u09": 9
+    }
+  },
+  "freeze_confirmation_phrase": "I_CONFIRM_MNMS2_SCOPE_CONTROL_V3_FROZEN",
+  "protocol_id": "MNMS2_SCOPE_CONTROL_V3_UNIT_PAIRED_N10",
+  "training": {
+    "amp": true,
+    "augmentation": false,
+    "batch_size": 16,
+    "drop_last": false,
+    "encoder": "resnet34",
+    "max_optimizer_steps": 2400,
+    "min_delta": 0.0,
+    "num_workers": 4,
+    "optimizer": "Adam",
+    "patience_validation_checks": 15,
+    "pretrained": true,
+    "selection_metric": "SIEMENS validation LV-present Dice",
+    "validation_interval_steps": 25
+  }
+}
